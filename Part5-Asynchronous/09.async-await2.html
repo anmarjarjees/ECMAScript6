@@ -11,11 +11,11 @@
 <body>
     <script>
         /*
-          Using the same example/function from Promises,
-          try to apply the knowledge of using promises with setTimeout() and a callback() function
-          and Promises to apply async code:
-
-          Let's review it first
+        Review#2 async/await (Ref: Microsoft Developer Website)
+        Using the same example/function from Promises,
+        try to apply the knowledge of using promises with setTimeout() and a callback() function
+        and Promises to apply async code:
+        Let's review it first
       */
 
 
@@ -108,9 +108,19 @@
             */
             await promiseTimeout(2000);
             return 100;
+            /*
+            To recap: we returning the value of "100" => return 100
+            this line will be wrapped inside the Promise.resolve(100)
+            so it's the same as writing: Promise.resolve(100)
+            which means this function will return the resolve (not the reject)
+            */
         }
 
         async function run() {
+            /*
+            Since the "simulateLongOperation" is actually returning a resolved promise
+            so we can await the function "simulateLongOperation" to retrieve the successful value
+            */
             const answer = await simulateLongOperation();
             console.log(answer); // 100
         }
@@ -118,7 +128,7 @@
         run();
 
         /*
-        Create our same function from before "waitFor()"
+        Another Example: Create our same function from before "waitFor()"
         */
         const waitFor = (seconds) => new Promise((resolve) => setTimeout(resolve, seconds * 1000));
 
@@ -152,11 +162,11 @@
         count();
 
         /*
-        As a conclusion, async/wait is syntactical format that make our code (functions) more readable and less cluttered. 
-        Async/Await is simply asynchronous code (asynchronous implementation and behaviour) with synchronous code structure because of the await syntax that makes the code looks a little bit cleaner.
+        As a conclusion:
+        async/wait is syntactical format that make our code (functions) more readable and less cluttered. 
+        Async/Await is simply asynchronous code (asynchronous implementation and behaviour) 
+        with synchronous code structure because of the await syntax that makes the code looks a little bit cleaner.
         */
-
-
     </script>
 </body>
 

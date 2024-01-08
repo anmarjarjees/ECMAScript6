@@ -12,7 +12,7 @@
     <script>
         /*
         About JavaScript:
-        JavaScript was originally designed to work as a single-threaded, synchronous language. 
+        JavaScript was originally designed to work as a "single-threaded", "synchronous" language. 
         This means it has one (single) call stack and one (single) memory heap.
         JS can run one thing at a time,
         meaning it executes code in order so one task or step runs after another step, 
@@ -20,17 +20,18 @@
 
         Not like C and C++ where programmers have to manage the computer memory,
         JavaScript, Python and C#, some others... 
-        automatically allocate memory when any object (function, varaible, ....) are created 
+        automatically allocate memory when any object (function, variable, ....) are created 
         and clear/free the memory when this object is no more in use
-        from any varaible that not in use any more and this process is called "Garbage Collection"
+        from any variable that not in use any more and this process is called "Garbage Collection"
 
         Stack: frames are created to store "Primitive Types" to be accessed from:
-        Number, Boolean, String, Null, Undefined, Symbol (available from ES6-2015), and BigInt (available from ES2020), frames are being added on top of each other.
+        Number, Boolean, String, Null, Undefined, Symbol (available from ES6-2015), 
+        and BigInt (available from ES2020), frames are being added on top of each other.
         Link: https://developer.mozilla.org/en-US/docs/Glossary/Primitive
         Link: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures
         Link: https://www.javascripttutorial.net/javascript-data-types
 
-        Heap: for storing objects (including functions, arrays, typed arrays, sets, maps, weak sets and weak maps)classes but the object reference varaible is created in the stack  
+        Heap: for storing objects (including functions, arrays, typed arrays, sets, maps, weak sets and weak maps)classes but the object reference variable is created in the stack  
 
         Callbacks:
         To review: In callback, one function is passed to another function as an argument.
@@ -53,20 +54,20 @@
         - Other tasks cannot be run while the current active task is not finished yet
         
         So during the waiting time for finishing the current task:
-        - Uer interface or app could appear frozen
+        - User interface or app could appear frozen
         - No other task can execute
         - Performance problems/issues
 
         The logical solution:
-        - Is let the system work on finishing the task, and when it's done, call me back!
-        So JS imitates this idea to handle this delay
+        - Is let the system work on finishing this long task, and when it's done, call me back!
+        So JS can imitates this idea to handle this delay
         */
 
         // Let's take this simple example to simulate the solution using simple setTimeout() method:
 
         /*
         setTimeout() Review: 
-        setTimeout() is a method of the "window" object like: window.alert() or window.confrim()
+        setTimeout() is a method of the "window" object like: window.alert() or window.confirm()
         since "window" is a global object:
         so we can just write/use setTimeout() instead of window.setTimeout().
 
@@ -82,7 +83,7 @@
         }, timeout);
         */
 
-        // Creating a function named callback() to just simple output a message
+        // Creating a named function named "callback" to just simply output a message
         function callback() {
             // using console for quick test:
             console.log('Time is completed for the current task after 3 seconds!');
@@ -94,19 +95,21 @@
 
         // NOTE" A function/code to be executed after the timer expires.
 
-        // Now let's try using tha arrow function:
+        // To recap/review: let's try using tha arrow (anonymous) function:
+        // Advantage: combining the two blocks of code into one with "setTimeout()"
         setTimeout(() => {
             console.log('Good After 4 seconds of waiting, here is the result: everything is done perfectly!')
         }, 4000); // 4000 MS = 4 Seconds
 
         /*
-        When we have multiple tasks to finish using setTimeout() could become more complicated
+        When we have multiple tasks to finish, using setTimeout() could become more complicated!
         And we can have multiple nested lines of code depending on how many task to finish.
-        So with ES6, we have "promises"!
+        So with ES6, we have the new concept called "promises"!
         */
 
         /*
-        A Promise is a cleaner version of callbacks
+        The idea of "promises":
+        A Promise is a cleaner version of callbacks (Common development pattern)
         A Promise is an object representing the eventual completion or failure of an asynchronous operation.
 
         Like in a real-life analogy:
@@ -202,11 +205,11 @@
             let avg = (exam1 + exam2) / 2;
 
             if (avg >= 90) {
-                // Resolve the promise
+                // Resolve the promise => using our resolve() function
                 // We can pass anything to promise()
                 resolve("Passing with A+");
             } else {
-                // Reject the promise => using reject() function
+                // Reject the promise => using our reject() function
                 // (parameter) reject: (reason?: any) => void
                 // We can pass anything to reject()
                 reject("Failed to get A+");
@@ -359,22 +362,27 @@
         )
 
         /*
-            After having an idea about promise object and its method,
-            try to apply the knowledge of using promises with setTimeout() and a callback() function
-            and apply promise code:
+            Finally :-)
+            ************
+            Using "Promise" as s solution for our initial example:
+            After having an idea about promise object and its methods,
+            let's try to apply the knowledge of using promises of ES6
+            instead of using the classical way of setTimeout() and a callback() function
+            
+            Apply promise code :-)
         */
 
-        // this function "promiseTimeout" accepts "ms" argument to refer to Milliseconds
+        // This function "promiseTimeout" accepts "ms" argument to refer to Milliseconds
         function promiseTimeout(ms) {
             /*
-            This function is returning a promise object
-            this promise object accepting a callback function with two promise parameters: 
-            - resolve
-            - reject 
+            This function is returning a "Promise object"
+            this promise object accepting a "Callback function" with two promise parameters: 
+            - resolve (to indicate success)
+            - reject (to indicate failure) 
 
             The object promise will call:
-            - resolve when operation succeeds
-            - reject when operation fails
+            - the parameter "resolve" when operation succeeds 
+            - the parameter "reject" when operation fails 
             */
             return new Promise((resolve, reject) => {
                 /*
@@ -391,11 +399,18 @@
                 ourCode => will be just calling resolve by setTimeout
                 */
 
+                // NOTE: resolve and reject parameters act as functions
                 // Testing:
                 console.log("Resolve: ", resolve); // Resolve:  ƒ () { [native code] }
                 console.log("Reject: ", reject); // Reject:  ƒ () { [native code] }
 
+                // the "resolve" is called by setTimeout function
                 setTimeout(resolve, ms);
+                /*
+                IMPORTANT NOTE TO RECAP:
+                We passed the parameter function "resolve" => run the .then() method
+                if we pass the parameter function "reject" => run the .catch() method
+                */
             });
         }
 
@@ -411,6 +426,7 @@
         - catch( ourFunction() ) method on fails when reject
         */
 
+        // Just adding a delay of 1 second:
         setTimeout(
             () => {
                 console.log('\n\n');
@@ -419,12 +435,11 @@
             }, 10000);
 
         promiseTimeout(10000)
+            // As explained, catch will only run if code succeeds
             .then(() => {
                 console.log('Mission Accomplished#1!');
             })
-            /*
-            As explained above, catch will only run if code fails or any other of rejection reason
-            */
+            // As explained, catch will only run if code fails or any other of rejection reason
             .catch(() => {
                 console.log('Mission Impossible');
             });
@@ -435,6 +450,8 @@
         - then() => to display our one custom message: Mission Accomplished#2!
         - then() => to display our one custom message: Again, don't forget that your mission is done!
         */
+
+        // Just adding a delay of 1.4 second:
         setTimeout(
             () => {
                 console.log('\n\n');
@@ -442,6 +459,7 @@
                 console.log('****************************************************************');
             }, 14000);
 
+        // Below again is common pattern of using .then() and .catch()
         promiseTimeout(14000)
             .then(() => {
                 console.log('Mission Accomplished#2!');
@@ -466,14 +484,23 @@
                 console.log('****************************************************************');
             }, 18000);
 
+        // Another example:
         promiseTimeout(18000)
             .then(() => {
                 console.log('Mission Accomplished#3!');
                 /*
-                If we are only interested in resolve, we can use the shorthand of returning only the resolve method
-                instead of returning the full promise object with resolve and reject:
+                NOTE:
+                If we are only interested in resolve, 
+                we can use the shorthand of returning only the resolve method
+                
+                so instead of returning the full Promise object: "return new Promise((resolve, reject)..." 
+                with resolve and reject:
 
-                and this will be passed on to the next then()
+                we can use the shortcut: Promise.resolve() 
+                and we can pass a value (argument will be passed on) to the next handler: then()
+
+                as we practiced above, we can have many handlers "then()" to run after each other
+                and all have access to the response "passing" variable
                 */
                 let msg = "'Trust me, your mission is done!'";
                 return Promise.resolve(msg);
@@ -482,6 +509,10 @@
                 console.log(response);
             })
             .catch(() => {
+                /*
+                Again, if there is a reject (when something fails)
+                we have the handler: catch()
+                */
                 console.log('Mission Impossible');
             }); 
     </script>
