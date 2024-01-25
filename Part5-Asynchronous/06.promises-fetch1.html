@@ -113,16 +113,21 @@
         */
 
         /*
-            Let's try GitHub API to grab some info from commits: (commit -m "message")
-
-            The pattern: https://api.github.com/repos/YOUR_GITHUB_ID/YOUR_REPO_NAME/commits
-
-            Let's try to grab the commit of "Microsoft" for "vscode" repo
-            URL: https://github.com/microsoft/vscode
-            API URL: https://api.github.com/repos/microsoft/vscode/commits
-
-            NOTE: Don't forget the error of the API request limit to GitHub API within a short period of time
-        */
+        Let's try GitHub API to grab some info from commits: (commit -m "message")
+   
+        The pattern (syntax) to follow: 
+        https://api.github.com/repos/YOUR_GITHUB_ID/YOUR_REPO_NAME/commits
+   
+        Example:
+        https://api.github.com/repos/alexchow/my-java-repo/commits
+   
+        Let's try to grab the commits of "Microsoft" for "vscode" repo
+        URL: https://github.com/microsoft/vscode
+        API URL: https://api.github.com/repos/microsoft/vscode/commits
+   
+        IMPORTANT NOTE: 
+        Don't forget the error of the API request limit to GitHub API within a short period of time
+       */
         const gitApiUrl = "https://api.github.com/repos/microsoft/vscode/commits";
         fetch(gitApiUrl)
             .then(response => response.json())

@@ -71,6 +71,9 @@
         since "window" is a global object:
         so we can just write/use setTimeout() instead of window.setTimeout().
 
+        Notice if we want to run setTimeout() using nodeJS, 
+        NodeJs will provide its own implementation of the times methods
+
         setTimeout() Syntax:
         https://developer.mozilla.org/en-US/docs/Web/API/setTimeout#syntax
         most of the time, we will be using the following two syntax:
@@ -155,7 +158,7 @@
 
         /*
         NOTE:
-        The arguments "resolve" and "reject" are callbacks 
+        The arguments "resolve" and "reject" are "callbacks" 
         provided by JavaScript itself. Our code is only inside the executor.
         
         NOTE:
@@ -164,8 +167,10 @@
         It's just by convention, so we can use:
         - new Promise((x, y) => { ... }
         - new Promise((a, b) => { ... }
-        But JS will use the first parameter (whatever name you give it) for the resolve 
-        and second parameter (whatever name you give it) for the reject
+        
+        But JS will use:
+        > The first parameter (whatever name you give it) for the resolve 
+        > The second parameter (whatever name you give it) for the reject
 
         Please refer to my JS repos if you need any review in using functions
 
@@ -332,7 +337,6 @@
                 console.log(`Inside .catch() method = Rejected Promise => ${error}`);
             }
         )
-
 
         // For better understanding let's take another example and use promise => then => catch
         let myPromise = new Promise((myResolve, myReject) => {
