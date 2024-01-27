@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Object Destructing</title>
 </head>
@@ -115,11 +114,11 @@
         /* 
         Notice that:
         - we still need to reference the object property that we want to use even with alias names
-        - we put a varaible named "address" that doesn't have a matching property!
+        - we put a variable named "address" that doesn't have a matching property!
         in such case, JS will not though an error, it will just give it a value of "undefined"
         - we put a variable named "hobby" that doesn't have a matching property also! 
         but we can give it a default value of "Music". 
-        So we can give a default value to any varaible and this value will only be used if there is no matching
+        So we can give a default value to any variable and this value will only be used if there is no matching
         */
         let { name: givenName, dob: birthDate, gender, address, hobby = "music" } = employee;
         document.write(`<p>${givenName} was born in ${birthDate}. He is a ${gender}. He likes ${hobby}.</p>`);
@@ -165,7 +164,7 @@
         }
         document.write(`<br>${make} - ${brand} - ${year}`);
 
-        // Let's convert/assign the above example into an object varaible
+        // Let's convert/assign the above example into an object variable
         const carForSale = {
             make: "Toyota",
             brand: "Corolla",

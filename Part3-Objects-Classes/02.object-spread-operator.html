@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Objects with Spread Operator</title>
 </head>
@@ -85,11 +84,17 @@
         this method ".assign()" copies all enumerable own properties from one or more source objects 
         to a target object. 
         It returns the modified target object.
+        so this method can also be used to clone an objet
 
         Syntax
         Object.assign(target, ...sources)
 
         Link: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
+        */
+
+        /*
+        Code below takes all the members of "contact" object + "bio" object 
+        and combine them into a new variable "empInfo" that will be an objet also
         */
         const empInfo = Object.assign(bio, contact);
         console.log(empInfo);
@@ -104,7 +109,7 @@
         };
         */
 
-        document.write("<h2>empInfo (bio+contact) object keys/values:</h2>");
+        document.write("<h2>empInfo (bio+contact) objects keys/values:</h2>");
         for (const key in empInfo) {
             document.write(`<br>${key}: ${empInfo[key]}`);
         };
@@ -161,7 +166,21 @@
         */
 
         /*
-        Beside using .assign() method, based on this file topic, we can use the "Spread Operator" ... also!
+        let's use the same "Object" method "assign" to take one object as a resource
+        and create a new one as a clone from the first one!
+        
+        using the existing object "edu" to be cloned into a new one "moreEdu":
+        .assign(targetObject, sourceObject)
+        - the targetObject => passing an empty object to be fully filled with the source one:
+        - the sourceObject => the source main object that we want to clone it:
+        */
+        const moreEdu = Object.assign({}, edu);
+        console.log("moreEdu Object: ", moreEdu);
+
+        /*
+        More advanced examples:
+        Beside using .assign() method, based on this file topic, 
+        we can use the "Spread Operator" ... also!
         */
         const employeeInformation = { ...bio, ...contact, ...edu };
         document.write("<h2>Employee Full Information (bio+contact+edu) object keys/values:</h2>");
